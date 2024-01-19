@@ -5,7 +5,7 @@
 <img src="https://github.com/Coop-Wolf/3013-Algorithms/assets/156962773/42348a75-44d8-4764-a1dc-f8942dd4584d" width="200">
 
 #### Avatar:
-<img src="https://images2.imgbox.com/ae/bd/tERTAGTL_o.png" width="75">
+<img src="https://github.com/Coop-Wolf/3013-Algorithms/assets/156962773/0855cd2e-77a3-4955-beb7-963533f5e635" width="75">
 
 
 
