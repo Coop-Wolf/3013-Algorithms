@@ -776,16 +776,16 @@ void Vector::print(ofstream& outfile)
 {
     Node* temp = front;
 
-    cout << "[";
-    outfile << "[";
+    cout << "[ ";
+    outfile << "[ ";
     // looping til temp = NULL
     while (temp)
     {
-        cout << temp->data << ", ";
-        outfile << temp->data << ", ";
+        cout << temp->data << " ";
+        outfile << temp->data << " ";
         temp = temp->next;
     }
 
-    cout << "]";
-    outfile << "]";
+    cout << " ]";
+    outfile << " ]";
 }
