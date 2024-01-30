@@ -20,12 +20,12 @@ list based ADT's and to implement various operations that they can perform.
 - Parameters `<input file> <output file>`
 - The input file should be formatted with integers on every line.
 
-+----+
-| 93 |
-| 54 |
-| 12 |
-| 39 |
-+----+
+   +----+
+1. | 93 |
+2. | 54 |
+3. | 12 |
+4. | 39 |
+   +----+
 
 12
 32
