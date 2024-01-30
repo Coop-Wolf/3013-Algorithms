@@ -27,6 +27,12 @@ list based ADT's and to implement various operations that they can perform.
 | 39 |
 +----+
 
++------------+
+| name1 age1 |
+| name2 age2 |
+| etc...     |
++------------+
+
 - Example Command:
-    - Enter input file name `<input file>`
-    - Enter output file name `<output file>`
+    - Enter input file name: `<input file>`
+    - Enter output file name: `<output file>`
