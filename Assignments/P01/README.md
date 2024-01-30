@@ -27,24 +27,11 @@ list based ADT's and to implement various operations that they can perform.
 | 39 |
 +----+
 
-+------------+
-| name1 age1 |
-| name2 age2 |
-| etc...     |
-+------------+
+|  21  |
+|  45  |
+|  65  |
+|  45  |
 
 - Example Command:
     - Enter input file name: `<input file>`
     - Enter output file name: `<output file>`
-
-
-
-- The input file should be formatted with a players name and age on a seperate line:
-
-+------------+
-| name1 age1 |
-| name2 age2 |
-| etc...     |
-+------------+
-
-- Example Command:
