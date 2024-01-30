@@ -27,7 +27,6 @@
 #include <fstream>
 using namespace std;
 
-
 /*
  * Vector
  *
