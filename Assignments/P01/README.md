@@ -20,21 +20,13 @@ list based ADT's and to implement various operations that they can perform.
 - Parameters `<input file> <output file>`
 - The input file should be formatted with integers on every line.
 
-
 | Line # | Data |
-|    1   |  12  |
-|    2   |  32  |
-|    3   |  43  |
-|    4   |  76  |
-|    5   |  54  |
-
-|   #   | Data |
-| :---: | ---- |
-|   1   |  12  |
-|   2   |  32  |
-|   3   |  43  |
-|   4   |  76  |
-|   5   |  54  |
+| :----: | ---- |
+|   1.   |  12  |
+|   2.   |  32  |
+|   3.   |  43  |
+|   4.   |  76  |
+|   5.   |  54  |
 
 
 - Example Command:
