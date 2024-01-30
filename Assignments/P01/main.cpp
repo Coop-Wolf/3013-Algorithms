@@ -8,7 +8,7 @@
 *  Semester:         Spring 2024
 *
 *  Description:
-*        This program implements a list linked based vector class. It's methods allow you to 
+*        This program implements a linked list based vector class. It's methods allow you to 
 *        perform operations like push, pop, pushRear, popRear, pushAt, and popAt. This class 
 *        is similar to a list link based queue with more methods. This project was done to 
 *        further my knowledge of linked list and to get more comfortable using them.
