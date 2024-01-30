@@ -28,6 +28,14 @@ list based ADT's and to implement various operations that they can perform.
 |    4   |  76  |
 |    5   |  54  |
 
+|   #   | Data |
+| :---: | ---- |
+|   1   |  12  |
+|   2   |  32  |
+|   3   |  43  |
+|   4   |  76  |
+|   5   |  54  |
+
 
 - Example Command:
     - Enter input file name: `<input file>`
