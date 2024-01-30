@@ -27,10 +27,11 @@ list based ADT's and to implement various operations that they can perform.
 | 39 |
 +----+
 
-|  21  |
-|  45  |
-|  65  |
-|  45  |
+12
+32
+34
+65
+61
 
 - Example Command:
     - Enter input file name: `<input file>`
