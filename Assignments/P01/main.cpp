@@ -313,9 +313,6 @@ int popRear();
 };
 
 
-
-
-
 /**
  * Public    : openFile
  *
@@ -516,7 +513,7 @@ Vector::Vector(Vector& other)
 {
     front = rear = NULL;
 
-    Node* temp = other.front;
+    Node* temp = other.front;       // variable to traverse vector
 
     //traversing other vector pushing nodes to rear of this vector
     while (temp)
@@ -549,7 +546,7 @@ Vector::Vector(Vector& other)
 
     void Vector::pushFront(int val)
     {
-        Node* temp = new Node(val);
+        Node* temp = new Node(val); // variable to store node
 
         // checking if vector is empty
         if (front == NULL)
@@ -567,7 +564,7 @@ Vector::Vector(Vector& other)
 void Vector::pushFront(Vector other)
 {
     int i = 0;                      //variable to store index
-    Node* temp = other.front;
+    Node* temp = other.front;       // variable to traverse vector
 
     // traversing other vector
     while (temp)
@@ -582,7 +579,7 @@ void Vector::pushFront(Vector other)
 
     void Vector::pushRear(int val)
     {
-        Node* temp = new Node(val);
+        Node* temp = new Node(val); // variable to traverse vector
 
         // checking if vector is empty
         if (front == NULL)
@@ -601,7 +598,7 @@ void Vector::pushFront(Vector other)
 
 void Vector::pushRear(Vector other)
 {
-    Node* temp = other.front;
+    Node* temp = other.front;       // variable to traverse vector
 
     // traversing other.vector pushing nodes to this->vector
     while (temp)
@@ -613,8 +610,8 @@ void Vector::pushRear(Vector other)
 
     void Vector::pushAt(int index, int val)
     {
-        int size = 0;
-        Node* temp = front;
+        int size = 0;               // variable to store size of vector
+        Node* temp = front;         // variable to traverse vector
 
         // checking size of Vector
         while (temp)
@@ -634,7 +631,7 @@ void Vector::pushRear(Vector other)
         // placing value into vector at the index
         else
         {
-            Node* temp2 = new Node(val);
+            Node* temp2 = new Node(val);    // variable to traverse vector
             temp = front;
             for (int i = 0; i < index - 1; i++)
             {
@@ -647,8 +644,8 @@ void Vector::pushRear(Vector other)
 
 void Vector::inOrderPush(int val)
 {
-    Node* temp = new Node(val);
-    Node* temp2 = front;
+    Node* temp = new Node(val);         // variable to store new node
+    Node* temp2 = front;                // variable to traverse vector
     int i = 0;                          // variable to track the index
 
     // if value is less than front, pushFront
@@ -676,7 +673,7 @@ void Vector::inOrderPush(int val)
 int Vector::popFront()
 {
     int x;                          // variable to store popped value
-    Node* temp = front;
+    Node* temp = front;             // variable to pop item in vector
 
     // checking if vector is empty
     if (front == NULL)
@@ -698,7 +695,7 @@ int Vector::popFront()
             return -1;
         else
         {
-            Node* temp = front;
+            Node* temp = front;     // variable to traverse vector
 
             // looping til temp is pointing to second to last node
             while (temp->next != rear)
@@ -718,9 +715,9 @@ int Vector::popFront()
 
 int Vector::popAt(int index)
 {
-    int size = 0;               // variable to store size of vector
-    Node* temp = front;
-    Node* temp2 = front;
+    int size = 0;                   // variable to store size of vector
+    Node* temp = front;             // variable to pop item in vector
+    Node* temp2 = front;            // variable to traverse vector
 
     // if index is 0, popping front
     if (index == 0)
@@ -757,7 +754,7 @@ int Vector::popAt(int index)
 int Vector::find(int val)
 {
     int i = 0;                      // variable to use for index
-    Node* temp = front;
+    Node* temp = front;             // variable to find vector
 
     // traversing vector
     while (temp != NULL)
@@ -774,7 +771,7 @@ int Vector::find(int val)
 
 void Vector::print(ofstream& outfile)
 {
-    Node* temp = front;
+    Node* temp = front;             // variable to traverse vector
 
     cout << "[ ";
     outfile << "[ ";
