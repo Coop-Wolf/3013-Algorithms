@@ -786,6 +786,6 @@ void Vector::print(ofstream& outfile)
         temp = temp->next;
     }
 
-    cout << " ]";
-    outfile << " ]";
+    cout << "]";
+    outfile << "]";
 }
