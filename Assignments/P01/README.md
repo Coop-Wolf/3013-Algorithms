@@ -12,7 +12,7 @@ list based ADT's and to implement various operations that they can perform.
 
 |   #   | File             | Description                                            |
 | :---: | ---------------- | --------------------------------------------------     |
-|   1   | Main.cpp         | Main driver of my project that stores the vector class.|
+|   1   |    Main.cpp      | Main driver of my project that stores the vector class.|
 
 ### Instructions
 
