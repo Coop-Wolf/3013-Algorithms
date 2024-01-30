@@ -2,33 +2,31 @@
 ### Cooper Wolf
 ### Description:
 
-Bacon ipsum dolor amet pork loin kielbasa pork, drumstick leberkas shankle strip steak fatback beef ribs ham hock.
-Pork short ribs doner andouille cupim pastrami picanha landjaeger pig. Salami swine capicola spare ribs boudin
-leberkas. Capicola ground round pork meatloaf, ham jowl swine prosciutto bacon alcatra pancetta burgdoggen pig
-spare ribs leberkas. Shankle fatback ground round, porchetta frankfurter cupim venison strip steak pig meatball
-biltong filet mignon. Shoulder chislic ground round pork burgdoggen hamburger.
+This program includes a class that works like a vector. It has the ability to push and pop integers
+to the front and rear of a vector, while also being able to read in arrays, input files, and other 
+vectors into the container. This is a linked list based vector which makes it easier to push and pop
+values in any given index of the vector. This program was created to reinforce my knowledge of linked
+list based ADT's and to implement various operations that they can perform.
 
 ### Files
 
-|   #   | File             | Description                                        |
-| :---: | ---------------- | -------------------------------------------------- |
-|   1   | Main.cpp         | Main driver of my project that launches game.      |
-|   2   | HelperClass.cpp  | Helper class that holds movement functions         |
-|   3   | TextureClass.cpp | Helper class that assists with textures and images |
+|   #   | File             | Description                                            |
+| :---: | ---------------- | --------------------------------------------------     |
+|   1   | Main.cpp         | Main driver of my project that stores the vector class.|
 
 ### Instructions
 
-- Make sure you install library `blahblah.cpp`
 - My program expects two parameters to be placed on the command line when you run the program.
-- Parameters `<input file> <number of players>`
-- The input file should be formatted with a players name and age on a seperate line:
+- Parameters `<input file> <output file>`
+- The input file should be formatted with integers on every line.
 
-+------------+
-| name1 age1 |
-| name2 age2 |
-| etc...     |
-+------------+
++----+
+| 93 |
+| 54 |
+| 12 |
+| 39 |
++----+
 
 - Example Command:
-    - `python <code> <input file> <num players>`
-    - `python main.cpp input.txt 3`
+    - Enter input file name `<input file>`
+    - Enter output file name `<output file>`
