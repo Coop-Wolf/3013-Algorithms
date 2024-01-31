@@ -1,4 +1,4 @@
-## P01 - Vector Class
+## Extra Credit - Vector Class
 ### Cooper Wolf
 ### Description:
 
