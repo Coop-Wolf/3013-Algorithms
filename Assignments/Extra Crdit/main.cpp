@@ -10,7 +10,7 @@
 *  Description:
 *        This program implements a linked list based vector class. It's methods allow you to 
 *        perform operations like push, pop, pushRear, popRear, pushAt, and popAt. This class 
-*        is similar to a list link based queue with more methods. This project was done to 
+*        is similar to a linked list based queue with more methods. This project was done to 
 *        further my knowledge of linked list and to get more comfortable using them.
 *        
 *  Usage:
