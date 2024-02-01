@@ -1,4 +1,4 @@
-## Extra Credit - Vector Class
+## E01 - Vector Class
 ### Cooper Wolf
 ### Description:
 
@@ -12,7 +12,7 @@ list based ADT's and to implement various operations that they can perform.
 
 |   #   | File             | Description                                            |
 | :---: | ---------------- | --------------------------------------------------     |
-|   1   |    [Main.cpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/Extra%20Credit/main.cpp)      | Main driver of my project that stores the vector class.|
+|   1   |    [Main.cpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/E01/main.cpp)      | Main driver of my project that stores the vector class.|
 
 ### Instructions
 

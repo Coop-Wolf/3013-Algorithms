@@ -2,7 +2,7 @@
 *
 *  Author:           Cooper Wolf
 *  Email:            ctwolf1014@my.msutexas.edu
-*  Label:            Extra Credit
+*  Label:            E01
 *  Title:            Vector Class
 *  Course:           CMPS 3013
 *  Semester:         Spring 2024
