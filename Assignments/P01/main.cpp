@@ -122,7 +122,7 @@ void print()
 int main() 
 {
   int k;
-  string filePath = "Dictionary.txt";
+  string filePath = "animals.txt";
   ifstream infile(filePath);
   json jobject;
   string file_words;
