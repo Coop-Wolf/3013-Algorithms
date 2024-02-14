@@ -108,10 +108,13 @@ void destroy()
 void print()
 {
   wordNode* temp = head;
-  while(temp)
+  int i=0;
+
+  while(temp && i < 10)
     {
       cout << temp->word << " ";
       temp = temp->next;
+      i++;
     }
 }
 
