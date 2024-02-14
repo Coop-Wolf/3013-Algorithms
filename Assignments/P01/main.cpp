@@ -108,11 +108,10 @@ void destroy()
 void print()
 {
   wordNode* temp = head;
-  int i=0;
-
-  while(temp && i < 10)
+  int i = 0;
+  while(temp && i < 20)
     {
-      cout << temp->word << " ";
+      cout << temp->word << ", ";
       temp = temp->next;
       i++;
     }
@@ -120,11 +119,10 @@ void print()
 
 };
 
-int main() {
-
-  //int i=0;
+int main() 
+{
   int k;
-  string filePath = "animals.txt";
+  string filePath = "Dictionary.txt";
   ifstream infile(filePath);
   json jobject;
   string file_words;
@@ -200,16 +198,17 @@ int main() {
           }
           //i++;
 
-    if ((int)k != 32) { // if k is not a space print it
+    if ((int)k != 32) 
+    { // if k is not a space print it
         key = to_string(k);
       
-        cout << "   Current Substr: " << word << endl;
-        cout << "Found " << l1.getNumItems() << " words\n";
-        cout << "\nAuto-fill: ";
+        cout << "Current Substr: " << "'"<< word << "'" << endl;
+        cout << l1.getNumItems() << " words found\n\n";
+       // cout << "\nAuto-fill: ";
         l1.print();
         l1.destroy();
         cout << "\n\n";
 
    }
-   } 
+  } 
 }
