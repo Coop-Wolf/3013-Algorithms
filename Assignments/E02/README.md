@@ -14,7 +14,10 @@ introduce me to JSON and what it is capable of.
 
 |   #   | File             | Description                                            |
 | :---: | ---------------- | --------------------------------------------------     |
-|   1   |    [Main.cpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/E01/main.cpp)      | Main driver of my project that stores the vector class.|
+|   1   |    [Main.cpp](link)      | Main driver of my project.                     |
+|   2   |    [json.hpp](link)      | file contains json definitions.                |
+|   3   |    [mygetch.hpp](link)   | file contains getch definitions.               |
+|   4   |    [animals.txt](link)   | file contains animals names.                   |
 
 ### Instructions
 
