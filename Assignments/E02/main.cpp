@@ -12,8 +12,9 @@
 *        by reading in a list of animals and storing them into a JSON object. The user is then 
 *        asked to enter keys. As soon as the user enters a valid character, a list of ten 
 *        animals will be printed to the screen that contain the string on characters the user
-*        entered. It will also print the numbers of animals that contain that string entered. 
-*        This program was created to introduce me to JSON and what it is capable of.
+*        entered. It will also print the numbers of animals that contain that string entered.
+*        To end the program, the user needs to type in 'Z'. This program was created to
+*        introduce me to JSON and what it is capable of. 
 *        
 *  Usage:
 *       - This program already has the required files and prints all necessary data to screen
@@ -56,14 +57,12 @@ using json = nlohmann::json;
  *      wordNode w2(string word)                       // using either of the constructors
  *
  */
-
-
 struct wordNode
 {
 public:
+
 string word;
 wordNode* next;
-
 
 /**
 * Public    : wordNode
@@ -77,12 +76,7 @@ wordNode* next;
 * Returns:
 *      void
 */
-wordNode()
-{
-  word = " ";
-  next = NULL;
-}
-
+wordNode();
 
 /**
 * Public    : wordNode
@@ -96,13 +90,8 @@ wordNode()
 * Returns:
 *      void
 */
-wordNode(string word)
-{
-  this->word = word;
-  next = NULL;
-}
+wordNode(string word);
 };
-
 
 /*
  * List
@@ -131,11 +120,10 @@ wordNode(string word)
  *      l1.destory()                                    // manipulate the vector
  *
  */
-
-
 class List
 {
 private:
+
 wordNode* head;                             // variable that points to first node in the list
 
 public:
@@ -152,11 +140,7 @@ public:
 * Returns:
 *      void
 */
-List()
-{
-  head = NULL;
-}
-
+List() { head = NULL; }
 
 /**
 * Public    : List
@@ -170,94 +154,77 @@ List()
 * Returns:
 *      void
 */
-~List()
-{
-  wordNode *nodePtr = head;                 // start at head of list
-  while (nodePtr != NULL)
-    {
-      // garbage keeps track of node to be deleted
-      wordNode *temp = nodePtr;
-      nodePtr = nodePtr->next;
-      // deleting trash
-      delete temp;
-    }
-}
+~List();
 
-void push(string word)
-{
-  wordNode* temp = new wordNode(word);      // variable to point to new node
+/**
+* Public    : List
+*
+* Description:
+*      This function adds a word to the list
+*
+* Params:
+*      string  :   word to add to the list
+*
+* Returns:
+*      void
+*/
+void push(string word);
 
-  if(head == NULL)
-    head = temp;
-  else
-  {
-    wordNode* temp2 = head;                 // variable to trace list
-    while(temp2->next)
-      {
-        temp2 = temp2->next;
-      }
-    temp2->next = temp;
-  }
-}
+/**
+* Public    : List
+*
+* Description:
+*      This function searches for a word in the list
+*
+* Params:
+*      string  :   word to search for in the list
+*
+* Returns:
+*      bool    :   depending on if word was in the list or not
+*/
+bool find(string item);
 
-bool find(string item)
-{
-  wordNode* temp = head;                    // variable to search the list
+/**
+* Public    : List
+*
+* Description:
+*      This function adds a word to the list
+*
+* Params:
+*      none
+*
+* Returns:
+*      int  :     number of words in the list
+*/
+int getNumItems();
 
-  // looping til end of list
-  while(temp)
-    {
-      // if word is found get out of loop
-      if(temp->word == item)
-        return true;
-      else
-        temp = temp->next;
-    }
-  return false;
-}
+/**
+* Public    : List
+*
+* Description:
+*      This function removes all the words from the list
+*
+* Params:
+*      none
+*
+* Returns:
+*      void
+*/
+void destroy();
 
-int getNumItems()
-{
-  wordNode* temp = head;                    // variable to traverse the list
-  int num_items=0;
-
-  // looping through list
-  while(temp)
-    {
-      temp = temp->next;
-      num_items++;
-    }
-  return num_items;
-}
-
-void destroy()
-{
-  wordNode* temp = head;                    // variable to traverse list
-  wordNode* temp2 = head;                   // variable to traverse list
-
-  // looping through list
-  while(temp)
-    {
-      temp2->next = NULL;
-      temp = temp->next;
-      temp2 = temp;
-    }
-  head = NULL;
-}
-
-void print()
-{
-  wordNode* temp = head;                    // variable to traverse list
-  int i = 0;                                // variable to keep track of words printed
-
-  // looping til end of list or 10 words have been printed
-  while(temp && i < 10)
-    {
-      cout << temp->word << ", ";
-      temp = temp->next;
-      i++;
-    }
-}
+/**
+* Public    : List
+*
+* Description:
+*      This function prints all the words from the list
+*
+* Params:
+*      none
+*
+* Returns:
+*      void
+*/
+void print();
 
 };
 
@@ -355,4 +322,107 @@ int main()
 
      }
   } 
+} // End of Main
+
+
+wordNode::wordNode()
+{
+  word = " ";
+  next = NULL;
+}
+
+wordNode::wordNode(string word)
+{
+  this->word = word;
+  next = NULL;
+}
+
+List::~List()
+{
+  wordNode *nodePtr = head;                 // start at head of list
+  while (nodePtr != NULL)
+    {
+      // garbage keeps track of node to be deleted
+      wordNode *temp = nodePtr;
+      nodePtr = nodePtr->next;
+      // deleting trash
+      delete temp;
+    }
+}
+
+void List::push(string word)
+{
+  wordNode* temp = new wordNode(word);      // variable to point to new node
+
+  if(head == NULL)
+    head = temp;
+  else
+  {
+    wordNode* temp2 = head;                 // variable to trace list
+    while(temp2->next)
+      {
+        temp2 = temp2->next;
+      }
+    temp2->next = temp;
+  }
+}
+
+bool List::find(string item)
+{
+  wordNode* temp = head;                    // variable to search the list
+
+  // looping til end of list
+  while(temp)
+    {
+      // if word is found get out of loop
+      if(temp->word == item)
+        return true;
+      else
+        temp = temp->next;
+    }
+  return false;
+}
+
+
+int List::getNumItems()
+{
+  wordNode* temp = head;                    // variable to traverse the list
+  int num_items=0;
+
+  // looping through list
+  while(temp)
+    {
+      temp = temp->next;
+      num_items++;
+    }
+  return num_items;
+}
+
+void List::destroy()
+{
+  wordNode* temp = head;                    // variable to traverse list
+  wordNode* temp2 = head;                   // variable to traverse list
+
+  // looping through list
+  while(temp)
+    {
+      temp2->next = NULL;
+      temp = temp->next;
+      temp2 = temp;
+    }
+  head = NULL;
+}
+
+void List::print()
+{
+  wordNode* temp = head;                    // variable to traverse list
+  int i = 0;                                // variable to keep track of words printed
+
+  // looping til end of list or 10 words have been printed
+  while(temp && i < 10)
+    {
+      cout << temp->word << ", ";
+      temp = temp->next;
+      i++;
+    }
 }

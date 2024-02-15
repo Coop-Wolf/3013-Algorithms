@@ -1,12 +1,14 @@
-## P01 - AutoComplete
+## E02 - AutoComplete
 ### Cooper Wolf
 ### Description:
 
-This program includes a class that works like a vector. It has the ability to push and pop integers
-to the front and rear of a vector, while also being able to read in arrays, input files, and other 
-vectors into the container. This is a linked list based vector which makes it easier to push and pop
-values in any given index of the vector. This program was created to reinforce my knowledge of linked
-list based ADT's and to implement various operations that they can perform.
+This program implements a linked list and includes a JSON object. The program begins
+by reading in a list of animals and storing them into a JSON object. The user is then 
+asked to enter keys. As soon as the user enters a valid character, a list of ten 
+animals will be printed to the screen that contain the string on characters the user
+entered. It will also print the numbers of animals that contain that string entered.
+To end the program, the user needs to type in 'Z'. This program was created to
+introduce me to JSON and what it is capable of. 
 
 ### Files
 
@@ -16,19 +18,8 @@ list based ADT's and to implement various operations that they can perform.
 
 ### Instructions
 
-- My program expects two parameters to be placed on the command line when you run the program.
-- Parameters `<input file> <output file>`
-- The input file should be formatted with integers on every line.
-
-| Line # | Data |
-| :----: | ---- |
-|   1.   |  12  |
-|   2.   |  32  |
-|   3.   |  43  |
-|   4.   |  76  |
-|   5.   |  54  |
-
+- My program expects you to enter in letter.
+- To terminate the program, key in 'Z'.
 
 - Example Command:
-    - Enter input file name: `<input file>`
-    - Enter output file name: `<output file>`
+    - Type keys to begin. Type 'Z' to quit.
