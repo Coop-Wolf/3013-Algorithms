@@ -2,7 +2,7 @@
 *
 *  Author:           Cooper Wolf
 *  Email:            ctwolf1014@my.msutexas.edu
-*  Label:            P02
+*  Label:            P01
 *  Title:            AutoComplete
 *  Course:           CMPS 3013
 *  Semester:         Spring 2024
