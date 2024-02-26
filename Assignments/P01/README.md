@@ -17,10 +17,12 @@ JSON and what it is capable of, coloring text, and using a timer.
 | :---: | ---------------- | --------------------------------------------------     |
 |   1   |    [Main.cpp](link)      | Main driver of my project.                     |
 |   2   |    [json.hpp](link)      | file contains json definitions.                |
-|   3   |    [mygetch.hpp](link)   | file contains getch definitions.               |
-|   4   |    [animals.txt](link)   | file contains animals names.                   |
-|   5   |    [timer.hpp](link)     | file to include time.                          |
-|   6   |    [termcolor.hpp](link) | file to color text.                            |
+|   3   |    [mygetch.hpp](link)   | Get character without printing.                |
+|   4   |    [animals.txt](link)   | Animals names.                                 |
+|   5   |    [timer.hpp](link)     | Include timer.                                 |
+|   6   |    [termcolor.hpp](link) | Color text.                                    |
+|   7   |    [dictionary.txt](link)    | Words.                                     |
+|   8   |    [dictionary.json](link)   | Words with definitions.                    |
 
 ### Instructions
 
