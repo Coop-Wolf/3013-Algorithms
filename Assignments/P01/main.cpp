@@ -39,7 +39,6 @@
 using namespace std;
 using json = nlohmann::json;
 
-
 /*
  * wordNode
  *
@@ -57,8 +56,8 @@ using json = nlohmann::json;
  *
  * Usage:
  *
- *      wordNode w1():                                 // Create an instance of wordNode
- *      wordNode w2(string word)                       // using either of the constructors
+ *      wordNode w1():                      // Create an instance of wordNode
+ *      wordNode w2(string word)            // using either of the constructors
  *
  */
 struct wordNode
@@ -118,17 +117,17 @@ wordNode(string word);
  *
  * Usage:
  *
- *      List l1():                                   // Create an instance of List
+ *      List l1():                          // Create an instance of List
  *
- *      l1.push(string)                              // use any of the methods to 
- *      l1.destory()                                 // manipulate the vector
+ *      l1.push(string)                     // use any of the methods to 
+ *      l1.destory()                        // manipulate the vector
  *
  */
 class List
 {
 private:
 
-wordNode* head;                             // variable that points to first node in the list
+wordNode* head;                             // points to first node in list
 
 public:
 
@@ -242,16 +241,16 @@ void load_words(json jobject, List& l1, bool found, string word,
 
 int main() 
 {
-  ifstream infile("animals.txt");        // creating input stream
+  ifstream infile("animals.txt");           // creating input stream
   json jobject;                             // creating object of JSON
   List l1;                                  // creating object of List
-  string file_words;                        // variable to store strings from input file
-  string word = "";                         // variable to store string entered by user
-  string newword = "";                      // variable to store word from JSON object
+  Timer T;                                  // creates a timer
+  string file_words;                        // stores words from file
+  string word = "";                         // stores user input
+  string newword = "";                      // strings pushed into list
+  bool deleting = false;                    // determines if backspaced
+  bool found = false;                       // determines if word was found
   int k;                                    // variable used to getch
-  bool deleting = false;                    // variable to determine if user pressed backspace
-  bool found = false;                       // variable to determine if word was found
-  Timer T;                                  // create a timer
   
   // starting timer
   T.Start(); 
@@ -303,7 +302,8 @@ int main()
 
 void print_title(Timer& T)
 {
-  cout << fixed << setprecision(4) << T.NanoSeconds() << " nanoseconds to read in words." << endl;
+  cout << fixed << setprecision(4) << T.NanoSeconds()
+       << " nanoseconds to read in words." << endl;
   cout << "Type keys to begin. Type '" << termcolor::red
        << "Z" << termcolor::reset << "' to" << termcolor::red
        << " quit" << termcolor::reset << ".\n\n";
@@ -384,11 +384,12 @@ wordNode::wordNode(string word)
 
 List::~List()
 {
-  wordNode *nodePtr = head;                 // start at head of list
+  wordNode *nodePtr = head;                 // used to traverse list
+  wordNode *temp = nodePtr;                 // used to delete nodes
   while (nodePtr != NULL)
     {
       // garbage keeps track of node to be deleted
-      wordNode *temp = nodePtr;
+      temp = nodePtr;
       nodePtr = nodePtr->next;
       // deleting trash
       delete temp;
@@ -397,13 +398,15 @@ List::~List()
 
 void List::push(string word)
 {
-  wordNode* temp = new wordNode(word);      // variable to point to new node
+  wordNode* temp = new wordNode(word);      // creates new node
 
   if(head == NULL)
     head = temp;
   else
   {
     wordNode* temp2 = head;                 // variable to trace list
+
+    // looping til end of list
     while(temp2->next)
       {
         temp2 = temp2->next;
@@ -414,7 +417,7 @@ void List::push(string word)
 
 bool List::find(string item)
 {
-  wordNode* temp = head;                    // variable to search the list
+  wordNode* temp = head;                    // variable to search list
 
   // looping til end of list
   while(temp)
@@ -431,7 +434,7 @@ bool List::find(string item)
 
 int List::getNumItems()
 {
-  wordNode* temp = head;                    // variable to traverse the list
+  wordNode* temp = head;                    // variable to traverse list
   int num_items=0;
 
   // looping through list
@@ -461,7 +464,8 @@ void List::destroy()
 void List::print(string word)
 {
   wordNode* temp = head;                    // variable to traverse list
-  int i = 0;                                // variable to keep track of words printed
+  int i = 0;                                // tracks words printed
+
   // looping til end of list or 10 words have been printed
   while(temp && i < 10)
     {
