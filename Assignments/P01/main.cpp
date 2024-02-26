@@ -21,12 +21,15 @@
 *       - 
 *
 *  Files:
-*       main.cpp      : driver program
-*       json.hpp      : json definitions
-*       mygetch.hpp   : mygetch definitions
-*       animals.txt   : file will animal names
-*       termcolor.hpp : file to color letters
-*       timer.hpp     : file to record time
+*       main.cpp       : driver program
+*       json.hpp       : json definitions
+*       mygetch.hpp    : mygetch definitions
+*       animals.txt    : file will animal names
+*       termcolor.hpp  : file to color letters
+*       timer.hpp      : file to record time
+*       animals.txt    : practice file to search animals
+*       dictionary.txt : practice file to search words
+*       dictionary.json: practice file to search words
 *****************************************************************************/
 
 #include <iostream>
