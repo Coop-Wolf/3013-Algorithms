@@ -25,13 +25,17 @@
 *       json.hpp      : json definitions
 *       mygetch.hpp   : mygetch definitions
 *       animals.txt   : file will animal names
+*       termcolor.hpp : file to color letters
+*       timer.hpp     : file to record time
 *****************************************************************************/
 
 #include <iostream>
-#include "json.hpp"
 #include <fstream>
 #include <algorithm>
+#include "termcolor.hpp"
 #include "mygetch.hpp"
+#include "timer.hpp"
+#include "json.hpp"
 using namespace std;
 using json = nlohmann::json;
 
@@ -116,8 +120,8 @@ wordNode(string word);
  *
  *      List l1():                                   // Create an instance of List
  *
- *      l1.push(string)                                 // use any of the methods to 
- *      l1.destory()                                    // manipulate the vector
+ *      l1.push(string)                              // use any of the methods to 
+ *      l1.destory()                                 // manipulate the vector
  *
  */
 class List
@@ -219,111 +223,152 @@ void destroy();
 *      This function prints all the words from the list
 *
 * Params:
-*      none
+*      string :     used to color letters
 *
 * Returns:
 *      void
 */
-void print();
+void print(string word);
 
 };
 
+// member functions need comments for them
+void print_title(Timer& T);
+void print_info(List& l1, string word, Timer& T);
+void if_backspace(string& word, bool& deleting);
+void if_capital(int k, string& word);
+void load_words(json jobject, List& l1, bool found, string word,
+                string newword);
+
 int main() 
 {
-  ifstream infile("animals.txt");           // creating input stream
+  ifstream infile("animals.txt");        // creating input stream
   json jobject;                             // creating object of JSON
   List l1;                                  // creating object of List
-  string file_words;                        // variablet to store strings from input file
+  string file_words;                        // variable to store strings from input file
   string word = "";                         // variable to store string entered by user
   string newword = "";                      // variable to store word from JSON object
   int k;                                    // variable used to getch
   bool deleting = false;                    // variable to determine if user pressed backspace
-  bool found = false;                       // variablet to determine if word was found
+  bool found = false;                       // variable to determine if word was found
+  Timer T;                                  // create a timer
   
+  // starting timer
+  T.Start(); 
+
   // loading JSON with words
   while(infile >> file_words)
-      {
         jobject.push_back(file_words);
-      }
 
-  cout << "Type keys to begin. Type 'Z' to quit.\n\n";
+  // stopping timer
+  T.End();
   
+  // printing instructions
+  print_title(T);
+
   // looping til input is not 'Z'
   while ((k = getch()) != 'Z') 
     {
-
-    // checking if user backspaced
-    if ((int)k == 127) 
-      {
-        if (word.size() > 0) 
-          {
-            word = word.substr(0, word.size() - 1);
-            deleting = true;
-          }
-      } 
-    else 
-      {
-        deleting = false;
-        // Make sure a letter was pressed and only letter
-        if (!isalpha(k)) 
+      T.Start();
+      // checking if user backspaced
+      if ((int)k == 127) 
+         if_backspace(word, deleting);
+      
+      else 
+       {
+         deleting = false;
+         // Make sure a letter was pressed and only letter
+         if (!isalpha(k)) 
           {
             cout << "Letters only!" << endl;
             sleep(1);
             continue;
           }
 
-        // lowercasing if user typed in a capital letter
-        if ((int)k < 97) 
-          {
-            k += 32;
-          }
-        // concat char to word
-        word += k;
+          // lowercasing if user typed in a capital letter
+          if_capital(k, word);
       }
 
-        // looping through the JSON object
-        for (const auto& item : jobject.items())
-          {
-            found = false;
+      // storing matching words
+      load_words(jobject, l1, found, word, newword);
 
-            // looping to compare characters
-            for(int i =0;i<word.size();i++)
-            {
-              found = false;
-
-              // checking if chars match
-              if(item.value().get<string>()[i] == word[i])
-               {
-                 // checking if word is alread in list
-                 if(!l1.find(item.value()))
-                 {
-                  newword = item.value();
-                  found = true;
-                 }
-               }
-              else 
-                break;
-            }
-            // adding new word to list
-            if(found)
-            l1.push(newword);
-          }
-
-    // if k isn't a space, print it
-    if ((int)k != 32) 
+      // if k isn't a space, print it
+      if ((int)k != 32) 
       {
-        cout << "Current Substr: " << "'"<< word << "'" << endl;
-        cout << l1.getNumItems() << " words found\n\n";
-
-        // print list then remove the words in it
-        l1.print();
-        l1.destroy();
-        cout << "\n\n";
-
-     }
+        T.End();
+        print_info(l1, word, T);
+      }
   } 
 } // End of Main
 
+void print_title(Timer& T)
+{
+  cout << fixed << setprecision(4) << T.NanoSeconds() << " nanoseconds to read in words." << endl;
+  cout << "Type keys to begin. Type '" << termcolor::red
+       << "Z" << termcolor::reset << "' to" << termcolor::red
+       << " quit" << termcolor::reset << ".\n\n";
+}
+
+void print_info(List& l1, string word, Timer& T)
+{
+  cout << termcolor::yellow << "Current Substring: " 
+       << termcolor::reset << "'"<< termcolor::red << word 
+       << termcolor::reset << "'" << endl;
+  cout << termcolor::green <<l1.getNumItems() << " words found in " 
+       << T.Seconds() << " seconds\n" << termcolor::reset;
+  l1.print(word);
+  l1.destroy();
+  cout << "\n\n";
+}
+
+void if_backspace(string& word, bool& deleting)
+{
+  if (word.size() > 0) 
+  {
+    word = word.substr(0, word.size() - 1);
+    deleting = true;
+  }
+}
+
+void if_capital(int k, string& word)
+{
+  //if letter is capital, lower it
+  if ((int)k < 97)
+     k += 32;
+
+  word += k; // append char to word
+}
+
+void load_words(json jobject, List& l1, bool found, string word,
+                 string newword)
+{
+  // looping through the JSON object
+  for (const auto& item : jobject.items())
+    {
+      found = false;  
+      // looping to compare characters
+      for(int i =0;i<word.size();i++)
+      {
+        found = false;
+        string sizew = item.value();
+        // checking if chars match
+        if(item.value().get<string>()[i] == word[i])
+         {
+           // checking if word is alread in list
+           if(!l1.find(item.value()))
+           {
+            newword = item.value();
+            found = true;
+           }
+         }
+        else 
+          break;
+      }
+      // adding new word to list
+      if(found)
+      l1.push(newword);
+    }
+}
 
 wordNode::wordNode()
 {
@@ -413,15 +458,25 @@ void List::destroy()
   head = NULL;
 }
 
-void List::print()
+void List::print(string word)
 {
   wordNode* temp = head;                    // variable to traverse list
   int i = 0;                                // variable to keep track of words printed
-
   // looping til end of list or 10 words have been printed
   while(temp && i < 10)
     {
-      cout << temp->word << ", ";
+      // printing matching letters in red
+      for(int j = 0; j < word.size(); j++)
+        {
+          cout << termcolor::red << temp->word[j] << termcolor::reset;
+        }
+      // printing nonmatching letters in white
+      for(int x = word.size(); x < temp->word.size(); x++)
+        {
+          cout << termcolor::grey << temp->word[x] << termcolor::reset;
+        }
+
+      cout << ", ";
       temp = temp->next;
       i++;
     }
