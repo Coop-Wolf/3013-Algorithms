@@ -26,7 +26,7 @@ JSON and what it is capable of, coloring text, and using a timer.
 
 ### Instructions
 
-- My program expects you to enter in letter.
+- My program expects you to enter in letters.
 - To terminate the program, key in 'Z'.
 
 - Example Command:
