@@ -1,4 +1,4 @@
-/*****************************************************************************
+/***********************************************************************
 *
 *  Author:           Cooper Wolf
 *  Email:            ctwolf1014@my.msutexas.edu
@@ -8,16 +8,19 @@
 *  Semester:         Spring 2024
 *
 *  Description:
-*        This program implements a linked list and includes a JSON object. The program begins
-*        by reading in a list of words and storing them into a JSON object. The user is then 
-*        asked to enter keys. As soon as the user enters a valid character, a list of ten 
-*        words will be printed to the screen that contain the string on characters the user
-*        entered. It will also print the numbers of words that contain that string entered.
-*        To end the program, the user needs to type in 'Z'. This program was created to
+*        This program implements a linked list and includes a JSON
+*        object. The program begins by reading in a dictionary and
+*        storing it into a JSON object. The user is then asked to enter
+*        keys. As soon as the user enters a valid character, a list of
+*        ten words will be printed to the screen that contain the string
+*        on characters the user entered. It will also print the numbers
+*        of words that contain that string entered. To end the program,
+*        the user needs to type in 'Z'. This program was created to
 *        introduce me to JSON and what it is capable of. 
 *        
 *  Usage:
-*       - This program already has the required files and prints all necessary data to screen
+*       - This program already has the required files and prints all
+*         necessary data to screen
 *       - 
 *
 *  Files:
@@ -27,7 +30,7 @@
 *       animals.txt   : file will animal names
 *       termcolor.hpp : file to color letters
 *       timer.hpp     : file to record time
-*****************************************************************************/
+***********************************************************************/
 
 #include <iostream>
 #include <fstream>
@@ -40,13 +43,13 @@
 using namespace std;
 using json = nlohmann::json;
 
-
 /*
  * wordNode
  *
  * Description:
- *      This struct implements the nodes for a list. Its variables, word and next
- *      allow it to store a string and the address of another node.
+ *      This struct implements the nodes for a list. Its variables, word
+ *      and next allow it to store a string and the address of another
+ *      node.
  *
  * Public Methods:
  *                          wordNode()
@@ -58,8 +61,8 @@ using json = nlohmann::json;
  *
  * Usage:
  *
- *      wordNode w1():                                 // Create an instance of wordNode
- *      wordNode w2(string word)                       // using either of the constructors
+ *      wordNode w1():                 // Create an instance of wordNode
+ *      wordNode w2(string word)       // Using constructors
  *
  */
 struct wordNode
@@ -102,8 +105,9 @@ wordNode(string word);
  * List
  *
  * Description:
- *      This class implements a linked list. With the help of the wordNode struct,
- *      this class can push, look for, and remove words from the list.
+ *      This class implements a linked list. With the help of the
+ *      wordNode struct, this class can push, look for, and remove words
+ *      from the list.
  *
  * Public Methods:
  *                          List()
@@ -119,17 +123,17 @@ wordNode(string word);
  *
  * Usage:
  *
- *      List l1():                                   // Create an instance of List
+ *      List l1():                     // Create an instance of List
  *
- *      l1.push(string)                              // use any of the methods to 
- *      l1.destory()                                 // manipulate the vector
+ *      l1.push(string)                // use any of the methods to 
+ *      l1.destory()                   // manipulate the vector
  *
  */
 class List
 {
 private:
 
-wordNode* head;                             // variable that points to first node in the list
+wordNode* head;                        // points to beginning of list
 
 public:
 
@@ -332,13 +336,13 @@ int main()
   ifstream infile("dictionary.txt");        // creating input stream
   json jobject;                             // creating object of JSON
   List l1;                                  // creating object of List
-  string file_words;                        // variable to store strings from input file
-  string word = "";                         // variable to store string entered by user
-  string newword = "";                      // variable to store word from JSON object
+  Timer T;                                  // object for timing program
+  string file_words;                        // stores strings from file
+  string word = "";                         // stores string from user
+  string newword = "";                      // stores word added to list
   int k;                                    // variable used to getch
-  bool deleting = false;                    // variable to determine if user pressed backspace
-  bool found = false;                       // variable to determine if word was found
-  Timer T;                                  // create a timer
+  bool deleting = false;                    // determines if backspaced
+  bool found = false;                       // determines if word found
   
   // starting timer
   T.Start(); 
@@ -389,7 +393,8 @@ int main()
 void print_title(Timer& T)
 {
   // printing data to screen
-  cout << fixed << setprecision(4) << (float)T.NanoSeconds() / 1000000000
+  cout << fixed << setprecision(4)
+       << (float)T.NanoSeconds() / 1000000000
        << " seconds to read in words." << endl;
   cout << "Type keys to begin. Type '" << termcolor::red
        << "Z" << termcolor::reset << "' to" << termcolor::red
@@ -406,7 +411,8 @@ void print_info(List& l1, string word, Timer& T)
        << termcolor::reset << "'"<< termcolor::red << word 
        << termcolor::reset << "'" << endl;
   cout << termcolor::green << l1.getNumItems() << " words found in " 
-       << fixed << setprecision(4) << (float)T.NanoSeconds() / 1000000000
+       << fixed << setprecision(4)
+       << (float)T.NanoSeconds() / 1000000000
        << " seconds\n\n" << termcolor::reset;
   cout << termcolor::blue << termcolor::bold << termcolor::italic
        << termcolor::underline << "Auto-Fill:\n" << termcolor::reset;
@@ -478,7 +484,9 @@ void clear_screen()
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(hStdOut, &csbi);
 
-    FillConsoleOutputCharacter(hStdOut, ' ', csbi.dwSize.X * csbi.dwSize.Y, coord, &count);
+    FillConsoleOutputCharacter(hStdOut, ' ',
+                               csbi.dwSize.X * csbi.dwSize.Y,
+                               coord, &count);
     SetConsoleCursorPosition(hStdOut, coord);
     #else
     // ANSI escape code for Unix-like systems
@@ -513,7 +521,7 @@ List::~List()
 
 void List::push(string word)
 {
-  wordNode* temp = new wordNode(word);      // variable to point to new node
+  wordNode* temp = new wordNode(word);      // points to new node
 
   if(head == NULL)
     head = temp;
@@ -530,7 +538,7 @@ void List::push(string word)
 
 bool List::find(string item)
 {
-  wordNode* temp = head;                    // variable to search the list
+  wordNode* temp = head;                    // used to search list
 
   // looping til end of list
   while(temp)
@@ -547,7 +555,7 @@ bool List::find(string item)
 
 int List::getNumItems()
 {
-  wordNode* temp = head;                    // variable to traverse the list
+  wordNode* temp = head;                    // used to traverse the list
   int num_items=0;
 
   // looping through list
@@ -577,7 +585,8 @@ void List::destroy()
 void List::print(string word)
 {
   wordNode* temp = head;                    // variable to traverse list
-  int i = 0;                                // variable to keep track of words printed
+  int i = 0;                                // counts words printed
+
   // looping til end of list or 10 words have been printed
   while(temp && i < 10)
     {
