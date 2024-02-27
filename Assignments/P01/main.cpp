@@ -329,7 +329,7 @@ void load_words(json jobject, List& l1, bool found, string word,
 
 int main() 
 {
-  ifstream infile("animals.txt");        // creating input stream
+  ifstream infile("dictionary.txt");        // creating input stream
   json jobject;                             // creating object of JSON
   List l1;                                  // creating object of List
   string file_words;                        // variable to store strings from input file
