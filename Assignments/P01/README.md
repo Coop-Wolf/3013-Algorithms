@@ -15,14 +15,14 @@ JSON and what it is capable of, coloring text, and using a timer.
 
 |   #   | File             | Description                                            |
 | :---: | ---------------- | --------------------------------------------------     |
-|   1   |    [Main.cpp](link)      | Main driver of my project.                     |
-|   2   |    [json.hpp](link)      | file contains json definitions.                |
-|   3   |    [mygetch.hpp](link)   | Get character without printing.                |
-|   4   |    [animals.txt](link)   | Animals names.                                 |
-|   5   |    [timer.hpp](link)     | Include timer.                                 |
-|   6   |    [termcolor.hpp](link) | Color text.                                    |
-|   7   |    [dictionary.txt](link)    | Words.                                     |
-|   8   |    [dictionary.json](link)   | Words with definitions.                    |
+|   1   |    [Main.cpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/main.cpp)      | Main driver of my project.                     |
+|   2   |    [json.hpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/json.hpp)      | file contains json definitions.                |
+|   3   |    [mygetch.hpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/mygetch.hpp)   | Get character without printing.                |
+|   4   |    [animals.txt](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/animals.txt)   | Animals names.                                 |
+|   5   |    [timer.hpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/timer.hpp)     | Include timer.                                 |
+|   6   |    [termcolor.hpp](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/termcolor.hpp) | Color text.                                    |
+|   7   |    [dictionary.txt](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/dictionary.txt)    | Words.                                     |
+|   8   |    [dictionary.json](https://github.com/Coop-Wolf/3013-Algorithms/blob/main/Assignments/P01/dictionary.json)   | Words with definitions.                    |
 
 ### Instructions
 
