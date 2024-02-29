@@ -14,9 +14,11 @@
 *        keys. As soon as the user enters a valid character, a list of
 *        ten words will be printed to the screen that contain the string
 *        on characters the user entered. It will also print the numbers
-*        of words that contain that string entered. To end the program,
-*        the user needs to type in 'Z'. This program was created to
-*        introduce me to JSON and what it is capable of. 
+*        of words that contain that string entered. When one word is 
+*        left, or user types 'Enter', the program will return the
+*        definition of the word. To end the program, the user needs to
+*        type in 'Z'. This program was created to introduce me to JSON
+*        and what it is capable of. 
 *        
 *  Usage:
 *       - This program already has the required files and prints all
@@ -353,7 +355,7 @@ void load_words(json jobject, List& l1, bool found, string word,
 
 int main() 
 {
-  ifstream infile("dictionary.json");        // creating input stream
+  ifstream infile("dictionary.json");       // creating input stream
   json jobject;                             // creating object of JSON
   List l1;                                  // creating object of List
   Timer T;                                  // object for timing program
@@ -381,6 +383,11 @@ int main()
       // clearing screen & starting timer
       clear_screen();
       T.Start();
+
+      // NEED TO FIX THIS LATER DOESNT WORK FOR ENTER KEY!!!!!!!!!!
+      if(l1.getNumItems() == 1 || (int)k == 10)
+         l1.print_def();
+
       // checking if user backspaced
       if ((int)k == 127) 
          if_backspace(word, deleting);
@@ -407,10 +414,6 @@ int main()
         T.End();
         print_info(l1, word, T);
       }
-
-      // NEED TO FIX THIS LATER DOESNT WORK FOR ENTER KEY!!!!!!!!!!
-      if(l1.getNumItems() == 1)
-         l1.print_def();
 
       // removing data in list
       l1.destroy();
