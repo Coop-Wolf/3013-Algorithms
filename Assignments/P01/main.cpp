@@ -48,21 +48,22 @@ using json = nlohmann::json;
  *
  * Description:
  *      This struct implements the nodes for a list. Its variables, word
- *      and next allow it to store a string and the address of another
- *      node.
+ *      def and next allow it to store a string and the address of 
+ *      another node.
  *
  * Public Methods:
  *                          wordNode()
- *                          wordNode(string word)
+ *                          wordNode(string word, string def)
  *
  * Private Methods:
  *      string               word
+ *      string               def
  *      wordNode*            next
  *
  * Usage:
  *
- *      wordNode w1():                 // Create an instance of wordNode
- *      wordNode w2(string word)       // Using constructors
+ *      wordNode w1():                       // Create an instance of wordNode
+ *      wordNode w2(string word, string def) // Using constructors
  *
  */
 struct wordNode
@@ -70,6 +71,7 @@ struct wordNode
 public:
 
 string word;
+string def;
 wordNode* next;
 
 /**
@@ -93,12 +95,13 @@ wordNode();
 *      This function gives the node a word
 *
 * Params:
-*      string  :   value to place into node
+*      string  :   word to place into node
+*      string  :   definition to place into node
 *
 * Returns:
 *      void
 */
-wordNode(string word);
+wordNode(string word, string def);
 };
 
 /*
@@ -115,6 +118,7 @@ wordNode(string word);
  *      void                push(string word)
  *      void                destroy()
  *      void                print()
+ *      void                print_def()
  *      int                 getNumItems()
  *      bool                find(string items)
  *
@@ -125,7 +129,7 @@ wordNode(string word);
  *
  *      List l1():                     // Create an instance of List
  *
- *      l1.push(string)                // use any of the methods to 
+ *      l1.push(string, string)        // use any of the methods to 
  *      l1.destory()                   // manipulate the vector
  *
  */
@@ -166,7 +170,7 @@ List() { head = NULL; }
 ~List();
 
 /**
-* Public    : List
+* Public    : Push
 *
 * Description:
 *      This function adds a word to the list
@@ -177,10 +181,10 @@ List() { head = NULL; }
 * Returns:
 *      void
 */
-void push(string word);
+void push(string word, string def);
 
 /**
-* Public    : List
+* Public    : find
 *
 * Description:
 *      This function searches for a word in the list
@@ -194,7 +198,7 @@ void push(string word);
 bool find(string item);
 
 /**
-* Public    : List
+* Public    : getNumItems
 *
 * Description:
 *      This function adds a word to the list
@@ -208,7 +212,7 @@ bool find(string item);
 int getNumItems();
 
 /**
-* Public    : List
+* Public    : destroy
 *
 * Description:
 *      This function removes all the words from the list
@@ -222,7 +226,7 @@ int getNumItems();
 void destroy();
 
 /**
-* Public    : List
+* Public    : print
 *
 * Description:
 *      This function prints all the words from the list
@@ -234,6 +238,21 @@ void destroy();
 *      void
 */
 void print(string word);
+
+
+/**
+* Public    : print_def
+*
+* Description:
+*      This function prints the definition of a word
+*
+* Params:
+*      void
+*
+* Returns:
+*      void
+*/
+void print_def();
 
 };
 
@@ -324,22 +343,24 @@ void if_capital(int k, string& word);
  *                       substring the user entered, gets added to list
  *      string word    - currect substring the user inputed
  *      string newword - string to add to the list
+ *      string def     - definitions of the words
  *
  * Returns:
  *      void
  */
 void load_words(json jobject, List& l1, bool found, string word,
-                string newword);
+                string newword, string def);
 
 int main() 
 {
-  ifstream infile("dictionary.txt");        // creating input stream
+  ifstream infile("dictionary.json");        // creating input stream
   json jobject;                             // creating object of JSON
   List l1;                                  // creating object of List
   Timer T;                                  // object for timing program
   string file_words;                        // stores strings from file
   string word = "";                         // stores string from user
   string newword = "";                      // stores word added to list
+  string def = "";                          // stores definitions 
   int k;                                    // variable used to getch
   bool deleting = false;                    // determines if backspaced
   bool found = false;                       // determines if word found
@@ -348,8 +369,7 @@ int main()
   T.Start(); 
 
   // loading JSON with words
-  while(infile >> file_words)
-        jobject.push_back(file_words);
+  infile >> jobject;
 
   // stopping timer & printing instructions
   T.End();
@@ -379,7 +399,7 @@ int main()
           if_capital(k, word);
       }
       // storing matching words
-      load_words(jobject, l1, found, word, newword);
+      load_words(jobject, l1, found, word, newword, def);
 
       // if k isn't a space, print it
       if ((int)k != 32) 
@@ -387,6 +407,13 @@ int main()
         T.End();
         print_info(l1, word, T);
       }
+
+      // NEED TO FIX THIS LATER DOESNT WORK FOR ENTER KEY!!!!!!!!!!
+      if(l1.getNumItems() == 1)
+         l1.print_def();
+
+      // removing data in list
+      l1.destroy();
   } 
 } // End of Main
 
@@ -419,7 +446,6 @@ void print_info(List& l1, string word, Timer& T)
 
   // printing list & deleting it
   l1.print(word);
-  l1.destroy();
   cout << "\n\n";
 }
 
@@ -443,7 +469,7 @@ void if_capital(int k, string& word)
 }
 
 void load_words(json jobject, List& l1, bool found, string word,
-                 string newword)
+                 string newword, string def)
 {
   // looping through the JSON object
   for (const auto& item : jobject.items())
@@ -453,14 +479,15 @@ void load_words(json jobject, List& l1, bool found, string word,
       for(int i =0;i<word.size();i++)
       {
         found = false;
-        string sizew = item.value();
+                                        // string sizew = item.key();
         // checking if chars match
-        if(item.value().get<string>()[i] == word[i])
+        if(item.key()[i] == word[i])
          {
            // checking if word is alread in list
-           if(!l1.find(item.value()))
+           if(!l1.find(item.key()))
            {
-            newword = item.value();
+            newword = item.key();
+            def = item.value();
             found = true;
            }
          }
@@ -469,7 +496,7 @@ void load_words(json jobject, List& l1, bool found, string word,
       }
       // adding new word to list
       if(found)
-      l1.push(newword);
+      l1.push(newword, def);
     }
 }
 
@@ -500,9 +527,10 @@ wordNode::wordNode()
   next = NULL;
 }
 
-wordNode::wordNode(string word)
+wordNode::wordNode(string word, string def)
 {
   this->word = word;
+  this->def = def;
   next = NULL;
 }
 
@@ -519,15 +547,17 @@ List::~List()
     }
 }
 
-void List::push(string word)
+void List::push(string word, string def)
 {
-  wordNode* temp = new wordNode(word);      // points to new node
+  wordNode* temp = new wordNode(word, def); // points to new node
 
   if(head == NULL)
     head = temp;
   else
   {
     wordNode* temp2 = head;                 // variable to trace list
+
+    //looping through list
     while(temp2->next)
       {
         temp2 = temp2->next;
@@ -556,7 +586,7 @@ bool List::find(string item)
 int List::getNumItems()
 {
   wordNode* temp = head;                    // used to traverse the list
-  int num_items=0;
+  int num_items=0;                          // counts words in list
 
   // looping through list
   while(temp)
@@ -606,4 +636,8 @@ void List::print(string word)
       i++;
     }
 }
-// Just so it can be 600 lines
+
+void List::print_def()
+{
+  cout << head->def;
+}
