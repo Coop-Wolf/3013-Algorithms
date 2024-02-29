@@ -94,7 +94,7 @@ wordNode();
 * Public    : wordNode
 *
 * Description:
-*      This function gives the node a word
+*      This function gives the node a word and definition
 *
 * Params:
 *      string  :   word to place into node
@@ -175,7 +175,7 @@ List() { head = NULL; }
 * Public    : Push
 *
 * Description:
-*      This function adds a word to the list
+*      This function adds a word and its definition to the list
 *
 * Params:
 *      string  :   word to add to the list
@@ -256,7 +256,7 @@ void print(string word);
 */
 void print_def();
 
-};
+};//End of List member functions
 
 /**
  * clear_screen
@@ -384,10 +384,6 @@ int main()
       clear_screen();
       T.Start();
 
-      // NEED TO FIX THIS LATER DOESNT WORK FOR ENTER KEY!!!!!!!!!!
-      if(l1.getNumItems() == 1 || (int)k == 10)
-         l1.print_def();
-
       // checking if user backspaced
       if ((int)k == 127) 
          if_backspace(word, deleting);
@@ -396,15 +392,17 @@ int main()
        {
          deleting = false;
          // Make sure a letter was pressed and only letter
-         if (!isalpha(k)) 
+         if ((int)k != 10 && (int)k != 45 && (int)k != 32 && !isalpha(k)) 
           {
             cout << "Letters only!" << endl;
             sleep(1);
             continue;
           }
           // lowercasing if user typed in a capital letter
+          if(isalpha(k))
           if_capital(k, word);
       }
+
       // storing matching words
       load_words(jobject, l1, found, word, newword, def);
 
@@ -414,6 +412,10 @@ int main()
         T.End();
         print_info(l1, word, T);
       }
+
+      // NEED TO FIX THIS LATER DOESNT WORK FOR ENTER KEY!!!!!!!!!!
+      if(l1.getNumItems() == 1 || (int)k == 10)
+         l1.print_def();
 
       // removing data in list
       l1.destroy();
