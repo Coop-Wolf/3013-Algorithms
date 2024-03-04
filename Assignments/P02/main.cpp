@@ -408,15 +408,21 @@ int main()
           if_capital(k, word);
       }
 
+      // if space is entered, adding space
+      if((int)k == 32)
+          word += " ";
+        
+      // if dash is entered, adding dash
+      if((int)k == 45)
+         word+= "-";
+
       // storing matching words
       load_words(jobject, l1, found, word, newword, def);
 
       // if k isn't a space, print it
-      if ((int)k != 32) 
-      {
-        T.End();
-        print_info(l1, word, T);
-      }
+      T.End();
+      print_info(l1, word, T);
+
 
       // if theres one word left, or user typed enter, prints definition
       if(l1.getNumItems() == 1 || (int)k == 10)
@@ -479,7 +485,7 @@ void if_capital(int k, string& word)
 }
 
 void load_words(json jobject, List& l1, bool found, string word,
-                 string newword, string def)
+                string newword, string def)
 {
   // looping through the JSON object
   for (const auto& item : jobject.items())
