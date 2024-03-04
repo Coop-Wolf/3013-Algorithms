@@ -2,7 +2,7 @@
 *
 *  Author:           Cooper Wolf
 *  Email:            ctwolf1014@my.msutexas.edu
-*  Label:            P01
+*  Label:            P02
 *  Title:            AutoComplete
 *  Course:           CMPS 3013
 *  Semester:         Spring 2024
@@ -26,12 +26,16 @@
 *       - 
 *
 *  Files:
-*       main.cpp      : driver program
-*       json.hpp      : json definitions
-*       mygetch.hpp   : mygetch definitions
-*       animals.txt   : file will animal names
-*       termcolor.hpp : file to color letters
-*       timer.hpp     : file to record time
+*       main.cpp       : driver program
+*       json.hpp       : json definitions
+*       mygetch.hpp    : mygetch definitions
+*       animals.txt    : file with animal names
+*       termcolor.hpp  : file to color letters
+*       timer.hpp      : file to record time
+*       dictionary.txt : file with dictionary words
+*       dictionary.json: file with dectionary words and definitions
+*       Banner         : banner for program
+*       README.me      : program description
 ***********************************************************************/
 
 #include <iostream>
@@ -413,7 +417,7 @@ int main()
         print_info(l1, word, T);
       }
 
-      // NEED TO FIX THIS LATER DOESNT WORK FOR ENTER KEY!!!!!!!!!!
+      // if theres one word left, or user typed enter, prints definition
       if(l1.getNumItems() == 1 || (int)k == 10)
          l1.print_def();
 
@@ -484,7 +488,7 @@ void load_words(json jobject, List& l1, bool found, string word,
       for(int i =0;i<word.size();i++)
       {
         found = false;
-                                        // string sizew = item.key();
+
         // checking if chars match
         if(item.key()[i] == word[i])
          {
