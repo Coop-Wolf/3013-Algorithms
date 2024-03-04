@@ -183,6 +183,7 @@ List() { head = NULL; }
 *
 * Params:
 *      string  :   word to add to the list
+*      string  :   defnition of the word
 *
 * Returns:
 *      void
@@ -313,7 +314,7 @@ void print_info(List& l1, string word, Timer& T);
  *      Determined if user entered backspace button. If so, 
  *      the last letter in string is deleted.
  * Params:
- *      int k            - current substring the user inputed
+ *      string word      - current substring the user inputed
  *      bool deleting    - if user entered backspace
  *
  * Returns:
