@@ -58,22 +58,24 @@ doctorly doctorship
 
 
 
-Continue typing keys, or type 'Z' to quit.
+Continue typing keys, or type 'Z' to quit
 
-Current Substring: 'ch'
-1202 words found in 0.2070 seconds
-
-Auto-Fill:
-ch chab chabastite chablis chabouk chabuk chase
-chachalaca chacma chaconne
-
-
-
-Continue typing keys, or type 'Z' to quit.
-
-Current Substring: 'plan'
-86 words found in 0.1770 seconds
+Current Substring: 'cooperatio' 
+1 words found in 0.1293 seconds 
 
 Auto-Fill:
-plan planaria planarian planarida planarioid planary
-planch plancher planchet planchette
+cooperation 
+
+1. The act of coöperating, or of operating together to one end; joint operation; concurrent effort or labor. Not holpen by the coöperation of angels. Bacon. 2. (Polit. Econ.)  The association of a number of persons for their benefit.
+
+
+
+Continue typing keys, or type 'Z' to quit.
+
+Current Substring: 'opel'
+1 words found in 0.1197 seconds
+
+Auto-Fill:
+opelet 
+
+A bright-colored European actinian (Anemonia, or Anthea, sulcata); -- so called because it does not retract its tentacles.
