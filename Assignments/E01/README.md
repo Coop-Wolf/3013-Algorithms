@@ -6,7 +6,7 @@ This program includes a class that works like a vector. It has the ability to pu
 to the front and rear of a vector, while also being able to read in arrays, input files, and other 
 vectors into the container. This is a linked list based vector which makes it easier to push and pop
 values in any given index of the vector. This program was created to reinforce my knowledge of linked
-list based ADT's and to implement various operations that they can perform.
+list based ADT's and to implement various operations that can be performed.
 
 ### Files
 
